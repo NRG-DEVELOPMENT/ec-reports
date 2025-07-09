@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EC Reports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Main Container -->
+        <div class="container" id="main-container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="logo">
+                    <i class="fas fa-headset"></i>
+                    <h1>EC Reports</h1>
+                </div>
+                
+                <div class="menu-items">
+                    <div class="menu-item active" data-section="bug-report">
+                        <i class="fas fa-bug"></i>
+                        <span>Bug Report</span>
+                    </div>
+                    <div class="menu-item" data-section="player-report">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Player Report</span>
+                    </div>
+                    <div class="menu-item" data-section="my-tickets">
+                        <i class="fas fa-ticket-alt"></i>
+                        <span>My Tickets</span>
+                    </div>
+                    <div class="menu-item admin-only" data-section="admin-panel">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Admin Panel</span>
+                    </div>
+                </div>
+                
+                <div class="close-btn" id="close-btn">
+                    <i class="fas fa-times"></i>
+                    <span>Close</span>
+                </div>
+            </div>
+            
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Header -->
+                <div class="header">
+                    <h2 id="section-title">Bug Report</h2>
+                    <div class="user-info">
+                        <span id="user-name">Player</span>
+                        <span class="admin-badge admin-only">Admin</span>
+                    </div>
+                </div>
+                
+                <!-- Content Sections -->
+                <div class="content">
+                    <!-- Bug Report Section -->
+                    <div class="section active" id="bug-report">
+                        <div class="section-description">
+                            <p>Use this form to report any bugs or technical issues you've encountered in the game.</p>
+                        </div>
+                        
+                        <form id="bug-report-form" class="report-form">
+                            <div class="form-group">
+                                <label for="bug-location">Location</label>
+                                <input type="text" id="bug-location" placeholder="Where did this bug occur?" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bug-subject">Subject</label>
+                                <input type="text" id="bug-subject" placeholder="Brief description of the issue" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bug-description">Description</label>
+                                <textarea id="bug-description" placeholder="Please provide as much detail as possible about the bug..." required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bug-reproduce">Steps to Reproduce</label>
+                                <textarea id="bug-reproduce" placeholder="What steps can we take to reproduce this issue?"></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Submit Bug Report</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Player Report Section -->
+                    <div class="section" id="player-report">
+                        <div class="section-description">
+                            <p>Use this form to report a player for rule violations or inappropriate behavior.</p>
+                        </div>
+                        
+                        <form id="player-report-form" class="report-form">
+                            <div class="form-group">
+                                <label for="player-id">Player ID / Name</label>
+                                <input type="text" id="player-id" placeholder="ID or name of the player you're reporting" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="report-reason">Reason</label>
+                                <select id="report-reason" required>
+                                    <option value="">Select a reason...</option>
+                                    <option value="cheating">Cheating / Hacking</option>
+                                    <option value="harassment">Harassment / Abusive Language</option>
+                                    <option value="metagaming">Metagaming</option>
+                                    <option value="rdm">RDM (Random Death Match)</option>
+                                    <option value="failrp">Fail RP / Breaking Character</option>
+                                    <option value="exploiting">Exploiting Bugs/Glitches</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="player-description">Description</label>
+                                <textarea id="player-description" placeholder="Please provide details about what happened..." required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="player-evidence">Evidence</label>
+                                <textarea id="player-evidence" placeholder="Do you have any evidence? (timestamps, screenshots, etc.)"></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Submit Player Report</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- My Tickets Section -->
+                    <div class="section" id="my-tickets">
+                        <div class="section-description">
+                            <p>View and manage all your submitted reports and their current status.</p>
+                        </div>
+                        
+                        <div class="tickets-container">
+                            <div class="tickets-header">
+                                <div class="search-box">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="my-tickets-search" placeholder="Search your tickets...">
+                                </div>
+                                <div class="filter-dropdown">
+                                    <select id="my-tickets-filter">
+                                        <option value="all">All Tickets</option>
+                                        <option value="open">Open</option>
+                                        <option value="in-progress">In Progress</option>
+                                        <option value="closed">Closed</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tickets-list" id="my-tickets-list">
+                                <!-- Tickets will be populated here -->
+                                <div class="empty-state">
+                                    <i class="fas fa-ticket-alt"></i>
+                                    <p>You haven't submitted any reports yet.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Admin Panel Section -->
+                    <div class="section admin-only" id="admin-panel">
+                        <div class="admin-dashboard">
+                            <div class="dashboard-stats">
+                                <div class="stat-card">
+                                    <div class="stat-value" id="open-tickets-count">0</div>
+                                    <div class="stat-label">Open Tickets</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value" id="in-progress-tickets-count">0</div>
+                                    <div class="stat-label">In Progress</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value" id="urgent-tickets-count">0</div>
+                                    <div class="stat-label">Urgent</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value" id="closed-tickets-count">0</div>
+                                    <div class="stat-label">Closed Today</div>
+                                </div>
+                            </div>
+                            
+                            <div class="admin-controls">
+                                <div class="search-box">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="admin-tickets-search" placeholder="Search all tickets...">
+                                </div>
+                                <div class="filter-group">
+                                    <div class="filter-dropdown">
+                                        <select id="admin-status-filter">
+                                            <option value="all">All Statuses</option>
+                                            <option value="open">Open</option>
+                                            <option value="in-progress">In Progress</option>
+                                            <option value="closed">Closed</option>
+                                        </select>
+                                    </div>
+                                    <div class="filter-dropdown">
+                                        <select id="admin-priority-filter">
+                                            <option value="all">All Priorities</option>
+                                            <option value="low">Low</option>
+                                            <option value="medium">Medium</option>
+                                            <option value="high">High</option>
+                                            <option value="urgent">Urgent</option>
+                                        </select>
+                                    </div>
+                                    <div class="filter-dropdown">
+                                        <select id="admin-type-filter">
+                                            <option value="all">All Types</option>
+                                            <option value="bug">Bug Reports</option>
+                                            <option value="player">Player Reports</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tickets-table-container">
+                                <table class="tickets-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Type</th>
+                                            <th>Subject</th>
+                                            <th>Reported By</th>
+                                            <th>Status</th>
+                                            <th>Priority</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="admin-tickets-list">
+                                        <!-- Admin tickets will be populated here -->
+                                    </tbody>
+                                </table>
+                                
+                                <div class="empty-state" id="admin-empty-state">
+                                    <i class="fas fa-check-circle"></i>
+                                    <p>No tickets match your current filters.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ticket Details Modal -->
+        <div class="modal" id="ticket-details-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Ticket <span id="ticket-id"></span></h2>
+                    <div class="close-modal">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="ticket-info">
+                        <div class="ticket-subject" id="ticket-subject"></div>
+                        <div class="ticket-meta">
+                            <span class="ticket-category" id="ticket-category"></span>
+                            <span class="ticket-status" id="ticket-status"></span>
+                            <span class="ticket-priority" id="ticket-priority"></span>
+                        </div>
+                        <div class="ticket-description" id="ticket-description"></div>
+                        <div class="ticket-submitter">
+                            Submitted by <span id="ticket-submitter"></span> on <span id="ticket-date"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-responses" id="ticket-responses">
+                        <!-- Responses will be populated here -->
+                    </div>
+                    
+                    <div class="response-form">
+                        <textarea id="response-text" placeholder="Type your response here..."></textarea>
+                        <button id="submit-response" class="btn btn-primary">Send Response</button>
+                    </div>
+                    
+                    <!-- Admin Actions -->
+                    <div class="admin-actions admin-only">
+                        <h3>Admin Actions</h3>
+                        <div class="action-buttons">
+                            <button id="assign-ticket" class="btn btn-secondary">
+                                <i class="fas fa-user-check"></i> Assign to Me
+                            </button>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle">
+                                    <i class="fas fa-flag"></i> Set Priority
+                                </button>
+                                <div class="dropdown-menu" id="priority-dropdown">
+                                    <!-- Priorities will be populated from config -->
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle">
+                                    <i class="fas fa-tasks"></i> Set Status
+                                </button>
+                                <div class="dropdown-menu" id="status-dropdown">
+                                    <div class="dropdown-item" data-status="open">Open</div>
+                                    <div class="dropdown-item" data-status="in-progress">In Progress</div>
+                                    <div class="dropdown-item" data-status="closed">Closed</div>
+                                </div>
+                            </div>
+                            <button id="teleport-to-location" class="btn btn-secondary">
+                                <i class="fas fa-map-marker-alt"></i> Teleport to Location
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Notifications -->
+        <div class="notifications" id="notifications"></div>
+    </div>
+    
+    <!-- Audio for notifications -->
+    <audio id="notification-sound" src="assets/notification.ogg"></audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>
