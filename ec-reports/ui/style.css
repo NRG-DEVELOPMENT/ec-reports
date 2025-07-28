@@ -1,17 +1,22 @@
 /* Base Styles */
 :root {
-    --primary-color: #8A2BE2; /* Bright purple */
-    --success-color: #4CAF50;
+    --primary-color: #0a4da8; /* Deep blue from NRG logo */
+    --primary-dark: #062a5c; /* Darker blue */
+    --primary-light: #2a7de9; /* Lighter blue */
+    --secondary: #00c8ff; /* Cyan accent */
+    --secondary-dark: #0099cc;
+    --secondary-light: #66e0ff;
+    --success-color: #00e676;
     --warning-color: #FFC107;
     --danger-color: #F44336;
     --info-color: #2196F3;
     
-    /* Dark blue/purple/black theme */
-    --dark-bg: #0A0A1A; /* Very dark blue-black */
-    --dark-surface: #121236; /* Dark blue-purple */
-    --dark-text: #E6E6FA; /* Light lavender */
-    --dark-border: #3A3A6A; /* Medium blue-purple */
-    --dark-accent: #6A5ACD; /* Slate blue */
+    --dark-bg: #0a1525; /* Very dark blue-black */
+    --dark-surface: #0c1e33; /* Dark blue */
+    --dark-text: #ffffff; /* White text */
+    --dark-text-secondary: #b3e0ff; /* Light blue text */
+    --dark-border: #1a3a5c; /* Medium blue */
+    --dark-accent: #2a7de9; /* Electric blue */
     
     --font-size-small: 14px;
     --font-size-medium: 16px;
@@ -22,6 +27,7 @@
     /* Sidebar width */
     --sidebar-width: 250px;
 }
+
 
 * {
     margin: 0;
@@ -56,9 +62,10 @@ body.visible {
     height: 90%;
     display: flex;
     background-color: var(--dark-bg);
+    box-shadow: 0 5px 30px rgba(0, 10, 30, 0.7);
+    border: 1px solid var(--secondary);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
     position: relative;
 }
 
@@ -66,8 +73,8 @@ body.visible {
 .sidebar {
     width: var(--sidebar-width);
     height: 100%;
-    background-color: var(--dark-surface);
-    border-right: 1px solid var(--dark-border);
+    background: linear-gradient(180deg, var(--primary-dark), var(--dark-bg));
+    border-right: 1px solid var(--secondary);
     display: flex;
     flex-direction: column;
     color: var(--dark-text);
@@ -77,13 +84,15 @@ body.visible {
     padding: 20px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--dark-border);
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+    border-bottom: 1px solid var(--secondary);
 }
 
 .logo i {
     font-size: 24px;
     margin-right: 10px;
-    color: var(--primary-color);
+    color: var(--secondary);
+    text-shadow: 0 0 10px var(--secondary-light);
 }
 
 .logo h1 {
@@ -114,12 +123,12 @@ body.visible {
 }
 
 .menu-item:hover {
-    background-color: rgba(106, 90, 205, 0.1);
+    background-color: rgba(0, 200, 255, 0.1);
 }
 
 .menu-item.active {
-    background-color: rgba(106, 90, 205, 0.2);
-    border-left: 3px solid var(--primary-color);
+    background-color: rgba(0, 200, 255, 0.15);
+    border-left: 3px solid var(--secondary);
 }
 
 .close-btn {
